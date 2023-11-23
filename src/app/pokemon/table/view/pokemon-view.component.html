@@ -1,0 +1,37 @@
+<div class="w-full flex items-center justify-center center h-screen">
+
+  <mat-card class="example-card w-full bg-red-500 bg-cover bg-center text-center"
+            style="background-image: url('https://icons.veryicon.com/png/o/miscellaneous/broken-linear-icon/pokemon-1.png');">
+    <span class="custome-font text-3xl text-white">POKEDEX</span>
+    <mat-card-header>
+      <div mat-card-avatar style="background-image: url({{pokemonSelected.img}});"
+           class="example-header-image bg-amber-50"></div>
+      <mat-card-title class="custome-font text-3xl text-white">{{pokemonSelected.name}}</mat-card-title>
+    </mat-card-header>
+
+    <div class="flex flex-row justify-between w-full p-5">
+      <div class="flex flex-col text-left  w-full">
+        <img src="https://projectpokemon.org/images/normal-sprite/{{pokemonSelected.name}}.gif"
+             width="250"
+             height="250"
+             alt="{{pokemonSelected.name}}">
+      </div>
+
+      <div class="flex flex-col text-right  w-full">
+        <span
+          class="custome-font text-xl text-white">XP: {{pokemonFound?.base_experience}}</span>
+        <span class="custome-font text-xl text-white">ALTURA: {{pokemonSelected?.height}}</span>
+        <span class="custome-font text-xl text-white">PESO: {{pokemonFound?.weight}}Kg.</span>
+      </div>
+
+
+    </div>
+
+    <mat-card-actions>
+      <button (click)="return()" class="bg-white" mat-button>VOLVER</button>
+    </mat-card-actions>
+  </mat-card>
+
+
+</div>
+

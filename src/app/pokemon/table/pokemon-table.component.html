@@ -1,0 +1,97 @@
+<div class="mat-elevation-z8 p-5 w-full">
+
+
+  <mat-form-field class="bg-amber-50 p-5 w-full" appearance="fill">
+    <mat-label>Buscar Pokemon</mat-label>
+    <input [formControl]="pokemonInput" (input)="applyFilter()" matInput>
+  </mat-form-field>
+
+
+  <table mat-table matTableResponsive [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="border-l px-1 border-amber-400 text-center custome-font text-lg">
+        No.
+      </th>
+      <td mat-cell *matCellDef="let element; let i=index;"
+          class="border-l px-1 border-amber-400 text-center custome-font text-lg"> {{i + 1}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="img">
+      <th mat-header-cell *matHeaderCellDef class="border-l border-amber-400 px-1 text-center custome-font text-lg">
+        Imagen
+      </th>
+      <td mat-cell *matCellDef="let element"
+          class="border-l border-amber-400 px-1 flex items-center justify-center">
+        <img src="{{element.img}}" alt="pokemon:{{element.name}}" width="100" height="100">
+      </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="border-l px-1 border-amber-400 text-center custome-font text-lg">
+        Nombre
+      </th>
+      <td mat-cell *matCellDef="let element"
+          class="border-l px-1 border-amber-400 text-center custome-font text-lg"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="experience">
+      <th mat-header-cell *matHeaderCellDef class="border-l border-amber-400 px-1 text-center custome-font text-lg">
+        XP.
+      </th>
+      <td mat-cell *matCellDef="let element"
+          class="border-l border-amber-400 px-1 text-center custome-font text-lg">{{element.experience}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef class="border-l border-amber-400 px-1 text-center custome-font text-lg">
+        Peso
+      </th>
+      <td mat-cell *matCellDef="let element"
+          class="border-l border-amber-400 px-1 text-center custome-font text-lg"> {{element.weight}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="border-l border-amber-400 px-1 text-center custome-font text-lg">
+        Añadir
+      </th>
+      <td mat-cell *matCellDef="let element"
+          class="border-l border-amber-400 px-1 text-center custome-font text-lg">
+        <ng-container *ngFor="let action of element.actions" class="m-2">
+          <button
+            [type]="'button'"
+            [matTooltip]="action?.tooltip"
+            mat-mini-fab
+            [disabled]="action?.disabled"
+            (click)="action?.action()"
+            [ngClass]="action?.class"
+            *ngIf="action.shown && action.type == 'mat-icon-button'"
+            class="bg-amber-400"
+          >
+            <mat-icon
+              *ngIf="action.icon"
+              [class]="'sm:icon-size-6 icon-size-4'"
+            >{{action?.icon}}</mat-icon>
+          </button>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row
+        [class.row-select]="row"
+        [class.row-is-clicked]="row===rowSelected"
+        *matRowDef="let row; columns: displayedColumns;"
+
+    ></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
