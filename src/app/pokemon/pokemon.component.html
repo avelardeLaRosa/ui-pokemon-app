@@ -3,12 +3,12 @@
     <h3 class="custome-font text-lg">Pokemones</h3>
   </div>
   <div class="text-right w-full">
-    <div class="text-left w-full flex flex-row">
-      <div class="w-full">
+    <div class="text-left w-full flex flex-row space-x-3">
+      <div>
         <h3 class="custome-font text-lg">Favoritos {{favoritesSize}}</h3>
       </div>
-      <div class="w-full">
-        <ng-container class="m-2">
+      <div>
+        <ng-container>
           <button
             [type]="'button'"
             [matTooltip]="'Añadir'"
@@ -20,23 +20,6 @@
             <mat-icon
               [class]="'sm:icon-size-6 icon-size-4'"
             >add
-            </mat-icon>
-          </button>
-        </ng-container>
-      </div>
-
-      <div class="w-full">
-        <ng-container class="m-2">
-          <button
-            [type]="'button'"
-            [matTooltip]="'Ver'"
-            mat-mini-fab
-            (click)="getFavoritePokemons()"
-            [ngClass]="'cursor-pointer mat-focus-indicator bg-green-500 mat-icon-button mat-button-base'"
-          >
-            <mat-icon
-              [class]="'sm:icon-size-6 icon-size-4'"
-            >search
             </mat-icon>
           </button>
         </ng-container>
